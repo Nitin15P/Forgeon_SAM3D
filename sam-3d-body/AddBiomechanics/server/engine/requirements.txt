@@ -1,0 +1,6 @@
+numpy == 1.24.4
+nimblephysics == 0.10.52.1
+pyopensim
+pandas
+matplotlib
+scipy

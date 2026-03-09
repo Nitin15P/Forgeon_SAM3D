@@ -1,0 +1,704 @@
+Momentum Model Definition V1.0
+
+################################################################################################################################################
+[ParameterTransform]
+# explains how joints (left) move with respect to parameters (right)
+# right side can contain either parameter or a previously defined joint as reference
+
+root.tx = 10.0 * root_tx
+root.ty = 10.0 * root_ty
+root.tz = 10.0 * root_tz
+root.rx = 1.0 * root_rx
+root.ry = 1.0 * root_ry
+root.rz = 1.0 * root_rz
+
+# Spine
+c_spine0.rx = 1.0 * spine0_rx_flexible + 0.01 * spine_twist0
+c_spine0.ry = 1.0 * spine0_ry_flexible + 0.22 * spine_lean0
+c_spine0.rz = 1.0 * spine0_rz_flexible + 0.16 * spine_bend0
+c_spine1.rx = 1.0 * spine1_rx_flexible + 0.12 * spine_twist0 + 0.07 * spine_twist1
+c_spine1.ry = 1.0 * spine1_ry_flexible + 0.14 * spine_lean0 + 0.08 * spine_lean1
+c_spine1.rz = 1.0 * spine1_rz_flexible + 0.42 * spine_bend0 + 0.22 * spine_bend1
+c_spine2.rx = 1.0 * spine2_rx_flexible + 0.22 * spine_twist0 + 0.42 * spine_twist1
+c_spine2.ry = 1.0 * spine2_ry_flexible + 0.11 * spine_lean0 + 0.23 * spine_lean1
+c_spine2.rz = 1.0 * spine2_rz_flexible + 0.06 * spine_bend0 + 0.13 * spine_bend1
+c_spine3.rx = 1.0 * spine3_rx_flexible + 0.16 * spine_twist1
+c_spine3.ry = 1.0 * spine3_ry_flexible + 0.22 * spine_lean1
+c_spine3.rz = 1.0 * spine3_rz_flexible + 0.01 * spine_bend1
+c_neck.rx = 1.0 * neck_twist
+c_neck.ry = 1.0 * neck_lean
+c_neck.rz = 1.0 * neck_bend
+c_head.rx = 1.0 * head_twist
+c_head.ry = 1.0 * head_lean
+c_head.rz = 1.0 * head_bend
+
+# Right arm
+r_clavicle.rx = 1.0 * r_clavicle_rx
+r_clavicle.ry = 1.0 * r_clavicle_ry
+r_clavicle.rz = 1.0 * r_clavicle_rz
+r_uparm.rx = 1.0 * r_uparm_twist
+r_uparm.ry = 1.0 * r_uparm_ry
+r_uparm.rz = 1.0 * r_uparm_rz
+r_lowarm.rz = 1.0 * r_elbow_bend
+r_wrist_twist.rx = 1.0 * r_lowarm_twist
+r_wrist.ry = 1.0 * r_wrist_ry
+r_wrist.rz = 1.0 * r_wrist_rz
+
+# Left arm
+l_clavicle.rx = 1.0 * l_clavicle_rx
+l_clavicle.ry = 1.0 * l_clavicle_ry
+l_clavicle.rz = 1.0 * l_clavicle_rz
+l_uparm.rx = 1.0 * l_uparm_twist
+l_uparm.ry = 1.0 * l_uparm_ry
+l_uparm.rz = 1.0 * l_uparm_rz
+l_lowarm.rz = 1.0 * l_elbow_bend
+l_wrist_twist.rx = 1.0 * l_lowarm_twist
+l_wrist.ry = 1.0 * l_wrist_ry
+l_wrist.rz = 1.0 * l_wrist_rz
+
+# Right leg
+r_upleg.rx = 1.0 * r_upleg_twist
+r_upleg.ry = 1.0 * r_upleg_ry
+r_upleg.rz = 1.0 * r_upleg_rz
+r_lowleg.rz = 1.0 * r_knee_bend
+r_foot.rx = 1.0 * r_lowleg_twist
+r_talocrural.rz = 1.0 * r_foot_bend
+r_subtalar.rx = 1.0 * r_foot_lean0
+r_transversetarsal.rx = 1.0 * r_foot_lean1
+r_ball.rz = 1.0 * r_ball_bend
+
+# Left leg
+l_upleg.rx = 1.0 * l_upleg_twist
+l_upleg.ry = 1.0 * l_upleg_ry
+l_upleg.rz = 1.0 * l_upleg_rz
+l_lowleg.rz = 1.0 * l_knee_bend
+l_foot.rx = 1.0 * l_lowleg_twist
+l_talocrural.rz = 1.0 * l_foot_bend
+l_subtalar.rx = 1.0 * l_foot_lean0
+l_transversetarsal.rx = 1.0 * l_foot_lean1
+l_ball.rz = 1.0 * l_ball_bend
+
+# Hands
+r_thumb0.ry = 1.0 * r_thumb0_ry
+r_thumb0.rz = 1.0 * r_thumb0_rz
+r_thumb1.rx = 1.0 * r_thumb1_rx
+r_thumb1.ry = 1.0 * r_thumb1_ry
+r_thumb1.rz = 1.0 * r_thumb1_rz
+r_thumb2.rz = 1.0 * r_thumb2_rz
+r_thumb3.rz = 1.0 * r_thumb3_rz
+
+r_index1.ry = 1.0 * r_index1_ry
+r_ring1.ry = 1.0 * r_ring1_ry
+r_pinky1.ry = 1.0 * r_pinky1_ry
+r_middle1.ry = 1.0 * r_middle1_ry
+r_index1.rz = 1.0 * r_index1_rz
+r_index2.rz = 1.0 * r_index2_rz
+r_index3.rz = 1.0 * r_index3_rz
+r_middle1.rz = 1.0 * r_middle1_rz
+r_middle2.rz = 1.0 * r_middle2_rz
+r_middle3.rz = 1.0 * r_middle3_rz
+r_ring1.rz = 1.0 * r_ring1_rz
+r_ring2.rz = 1.0 * r_ring2_rz
+r_ring3.rz = 1.0 * r_ring3_rz
+r_pinky1.rz = 1.0 * r_pinky1_rz
+r_pinky2.rz = 1.0 * r_pinky2_rz
+r_pinky3.rz = 1.0 * r_pinky3_rz
+
+# Twists for root of each finger to compensate for different rotation order between Nimble and Trinity
+r_index1.rx = 1.0 * r_index1_rx
+r_ring1.rx = 1.0 * r_ring1_rx
+r_pinky1.rx = 1.0 * r_pinky1_rx
+r_middle1.rx = 1.0 * r_middle1_rx
+
+l_thumb0.ry = 1.0 * l_thumb0_ry
+l_thumb0.rz = 1.0 * l_thumb0_rz
+l_thumb1.rx = 1.0 * l_thumb1_rx
+l_thumb1.ry = 1.0 * l_thumb1_ry
+l_thumb1.rz = 1.0 * l_thumb1_rz
+l_thumb2.rz = 1.0 * l_thumb2_rz
+l_thumb3.rz = 1.0 * l_thumb3_rz
+l_index1.ry = 1.0 * l_index1_ry
+l_ring1.ry = 1.0 * l_ring1_ry
+l_pinky1.ry = 1.0 * l_pinky1_ry
+l_middle1.ry = 1.0 * l_middle1_ry
+l_index1.rz = 1.0 * l_index1_rz
+l_index2.rz = 1.0 * l_index2_rz
+l_index3.rz = 1.0 * l_index3_rz
+l_middle1.rz = 1.0 * l_middle1_rz
+l_middle2.rz = 1.0 * l_middle2_rz
+l_middle3.rz = 1.0 * l_middle3_rz
+l_ring1.rz = 1.0 * l_ring1_rz
+l_ring2.rz = 1.0 * l_ring2_rz
+l_ring3.rz = 1.0 * l_ring3_rz
+l_pinky1.rz = 1.0 * l_pinky1_rz
+l_pinky2.rz = 1.0 * l_pinky2_rz
+l_pinky3.rz = 1.0 * l_pinky3_rz
+
+# Twists for root of each finger to compensate for different rotation order between Nimble and Trinity
+l_index1.rx = 1.0 * l_index1_rx
+l_ring1.rx = 1.0 * l_ring1_rx
+l_pinky1.rx = 1.0 * l_pinky1_rx
+l_middle1.rx = 1.0 * l_middle1_rx
+
+# Passive twists
+# Right arm
+## counter rotations
+r_uparm_twist0_proc.rx = -1.0 * r_uparm_twist
+r_uparm_twist1_proc.rx = -0.75 * r_uparm_twist
+r_uparm_twist2_proc.rx = -0.50 * r_uparm_twist
+r_uparm_twist3_proc.rx = -0.25 * r_uparm_twist
+## This last one is only used for scaling the arm length
+#r_uparm_twist4_proc.rx = -0.0 * r_uparm_twist
+
+r_lowarm_twist1_proc.rx = 0.2 * r_lowarm_twist
+r_lowarm_twist2_proc.rx = 0.4 * r_lowarm_twist
+r_lowarm_twist3_proc.rx = 0.6 * r_lowarm_twist
+r_lowarm_twist4_proc.rx = 0.8 * r_lowarm_twist
+
+# Left arm
+## counter rotations
+l_uparm_twist0_proc.rx = -1.0 * l_uparm_twist
+l_uparm_twist1_proc.rx = -0.75 * l_uparm_twist
+l_uparm_twist2_proc.rx = -0.50 * l_uparm_twist
+l_uparm_twist3_proc.rx = -0.25 * l_uparm_twist
+## This last one is only used for scaling
+#l_uparm_twist4_proc.rx = -0.0 * l_uparm_twist
+
+l_lowarm_twist1_proc.rx = 0.2 * l_lowarm_twist
+l_lowarm_twist2_proc.rx = 0.4 * l_lowarm_twist
+l_lowarm_twist3_proc.rx = 0.6 * l_lowarm_twist
+l_lowarm_twist4_proc.rx = 0.8 * l_lowarm_twist
+
+# Right leg
+# counter rotations
+r_upleg_twist0_proc.rx = -1.0 * r_upleg_twist
+r_upleg_twist1_proc.rx = -0.75 * r_upleg_twist
+r_upleg_twist2_proc.rx = -0.50 * r_upleg_twist
+r_upleg_twist3_proc.rx = -0.25 * r_upleg_twist
+## This last one is only used for scaling
+#r_upleg_twist4_proc.rx = -0.0 * r_upleg_twist
+
+r_lowleg_twist1_proc.rx = 0.2 * r_lowleg_twist
+r_lowleg_twist2_proc.rx = 0.4 * r_lowleg_twist
+r_lowleg_twist3_proc.rx = 0.6 * r_lowleg_twist
+r_lowleg_twist4_proc.rx = 0.8 * r_lowleg_twist
+
+# Left leg
+l_upleg_twist0_proc.rx = -1.0 * l_upleg_twist
+l_upleg_twist1_proc.rx = -0.75 * l_upleg_twist
+l_upleg_twist2_proc.rx = -0.50 * l_upleg_twist
+l_upleg_twist3_proc.rx = -0.25 * l_upleg_twist
+## This last one is only used for scaling
+#l_upleg_twist4_proc.rx = -0.0 * l_upleg_twist
+
+l_lowleg_twist1_proc.rx = 0.2 * l_lowleg_twist
+l_lowleg_twist2_proc.rx = 0.4 * l_lowleg_twist
+l_lowleg_twist3_proc.rx = 0.6 * l_lowleg_twist
+l_lowleg_twist4_proc.rx = 0.8 * l_lowleg_twist
+
+# Neck
+# counter rotations
+c_neck_twist0_proc.rx = -1.0 * neck_twist
+c_neck_twist1_proc.rx = -0.5 * neck_twist
+
+############## ADDITIONAL FLEXIBLE DOFS ###############
+l_foot.ry = 1.0 * l_foot_ry_flexible
+l_subtalar.rz = 1.0 * l_subtalar_rz_flexible
+l_talocrural.rx = 1.0 * l_talocrural_rx_flexible
+l_ball.rx = 1.0 * l_ball_rx_flexible
+r_foot.ry = 1.0 * r_foot_ry_flexible
+r_subtalar.rz = 1.0 * r_subtalar_rz_flexible
+r_talocrural.rx = 1.0 * r_talocrural_rx_flexible
+r_ball.rx = 1.0 * r_ball_rx_flexible
+
+################ FLEX LENGTH/WIDTH PARAMETERS ################
+# NOTE: These parameters are duplicates of some scale/identity
+#       parameter, but have to appear earlier to fulfill the
+#       assumption of momentum that all scale parameters
+#       are at the end of the parameter list. Duplicate joint
+#       assignments are additive and not a problem.
+
+
+c_spine1.tx = 2.21 * spine_length_flexible
+c_spine2.tx = 2.23 * spine_length_flexible
+c_spine3.tx = 3.71 * spine_length_flexible
+c_neck.tx = 1.85 * spine_length_flexible
+c_neck_twist0_proc.tx = 1.85 * spine_length_flexible
+c_neck_twist1_proc.tx = 5.0 * neck_length_flexible
+c_head.tx = 10.0 * neck_length_flexible
+
+r_uparm.tx = -8.36 * shoulder_width_flexible
+r_uparm.ty = -5.44 * shoulder_width_flexible
+r_uparm.tz = -0.63 * shoulder_width_flexible
+r_uparm_twist1_proc.tx = -1.25 * arm_length_flexible
+r_uparm_twist2_proc.tx = -2.5 * arm_length_flexible
+r_uparm_twist3_proc.tx = -3.75 * arm_length_flexible
+r_uparm_twist4_proc.tx = -5.0 * arm_length_flexible
+r_lowarm.tx = -5.0 * arm_length_flexible
+r_lowarm_twist1_proc.tx = -1.0 * arm_length_flexible
+r_lowarm_twist2_proc.tx = -2.0 * arm_length_flexible
+r_lowarm_twist3_proc.tx = -3.0 * arm_length_flexible
+r_lowarm_twist4_proc.tx = -4.0 * arm_length_flexible
+r_wrist_twist.tx = -5.0 * arm_length_flexible
+
+l_uparm.tx = 8.36 * shoulder_width_flexible
+l_uparm.ty = 5.44 * shoulder_width_flexible
+l_uparm.tz = 0.63 * shoulder_width_flexible
+l_uparm_twist1_proc.tx = 1.25 * arm_length_flexible
+l_uparm_twist2_proc.tx = 2.5 * arm_length_flexible
+l_uparm_twist3_proc.tx = 3.75 * arm_length_flexible
+l_uparm_twist4_proc.tx = 5.0 * arm_length_flexible
+l_lowarm.tx = 5.0 * arm_length_flexible
+l_lowarm_twist1_proc.tx = 1.0 * arm_length_flexible
+l_lowarm_twist2_proc.tx = 2.0 * arm_length_flexible
+l_lowarm_twist3_proc.tx = 3.0 * arm_length_flexible
+l_lowarm_twist4_proc.tx = 4.0 * arm_length_flexible
+l_wrist_twist.tx = 5.0 * arm_length_flexible
+
+r_upleg.tx = -10.0 * hip_width_flexible
+r_upleg_twist1_proc.tx = -1.25 * leg_length_flexible
+r_upleg_twist2_proc.tx = -2.50 * leg_length_flexible
+r_upleg_twist3_proc.tx = -3.75 * leg_length_flexible
+r_upleg_twist4_proc.tx = -5.0 * leg_length_flexible
+r_lowleg.tx = -5.0 * leg_length_flexible
+r_lowleg_twist1_proc.tx = -1.0 * leg_length_flexible
+r_lowleg_twist2_proc.tx = -2.0 * leg_length_flexible
+r_lowleg_twist3_proc.tx = -3.0 * leg_length_flexible
+r_lowleg_twist4_proc.tx = -4.0 * leg_length_flexible
+r_foot.tx = -5.0 * leg_length_flexible
+
+l_upleg.tx = 10.0 * hip_width_flexible
+l_upleg_twist1_proc.tx = 1.25 * leg_length_flexible
+l_upleg_twist2_proc.tx = 2.5 * leg_length_flexible
+l_upleg_twist3_proc.tx = 3.75 * leg_length_flexible
+l_upleg_twist4_proc.tx = 5.0 * leg_length_flexible
+l_lowleg.tx = 5.0 * leg_length_flexible
+l_lowleg_twist1_proc.tx = 1.0 * leg_length_flexible
+l_lowleg_twist2_proc.tx = 2.0 * leg_length_flexible
+l_lowleg_twist3_proc.tx = 3.0 * leg_length_flexible
+l_lowleg_twist4_proc.tx = 4.0 * leg_length_flexible
+l_foot.tx = 5.0 * leg_length_flexible
+
+################ Scaling parameters ##############
+
+# eye location scaling, only needed while we don't have a linear model for head keypoint fitting
+l_eye_null.tx = -1.0 * scale_eye_width
+r_eye_null.tx = 1.0 * scale_eye_width
+l_eye_null.ty = 1.0 * scale_eye_height
+r_eye_null.ty = 1.0 * scale_eye_height
+l_eye_null.tz = 1.0 * scale_eye_depth
+r_eye_null.tz = 1.0 * scale_eye_depth
+
+# spine scale
+c_spine1.tx = 2.21 * scale_spine_length
+c_spine2.tx = 2.23 * scale_spine_length
+c_spine3.tx = 3.71 * scale_spine_length
+c_neck.tx = 1.85 * scale_spine_length
+c_neck_twist0_proc.tx = 1.85 * scale_spine_length
+c_neck_twist1_proc.tx = 5.0 * scale_neck_length
+c_head.tx = 10.0 * scale_neck_length
+
+# right arm scale
+# shoulder_width coeffs meant to cause globally horizontal translation
+r_uparm.tx = -8.36 * scale_shoulder_width
+r_uparm.ty = -5.44 * scale_shoulder_width
+r_uparm.tz = -0.63 * scale_shoulder_width
+
+#r_uparm_twist0_proc.tx = -0.0 * scale_uparms
+r_uparm_twist1_proc.tx = -2.5 * scale_uparms
+r_uparm_twist2_proc.tx = -5.0 * scale_uparms
+r_uparm_twist3_proc.tx = -7.5 * scale_uparms
+r_uparm_twist4_proc.tx = -10.0 * scale_uparms
+r_lowarm.tx = -10.0 * scale_uparms
+r_lowarm_twist1_proc.tx = -2.0 * scale_lowarms
+r_lowarm_twist2_proc.tx = -4.0 * scale_lowarms
+r_lowarm_twist3_proc.tx = -6.0 * scale_lowarms
+r_lowarm_twist4_proc.tx = -8.0 * scale_lowarms
+r_wrist_twist.tx = -10.0 * scale_lowarms
+r_wrist.sc = 1.0 * scale_r_hands
+
+# left arm scale
+# shoulder_width coeffs meant to cause globally horizontal translation
+l_uparm.tx = 8.36 * scale_shoulder_width
+l_uparm.ty = 5.44 * scale_shoulder_width
+l_uparm.tz = 0.63 * scale_shoulder_width
+
+#l_uparm_twist0_proc.tx = 0.0 * scale_uparms
+l_uparm_twist1_proc.tx = 2.5 * scale_uparms
+l_uparm_twist2_proc.tx = 5.0 * scale_uparms
+l_uparm_twist3_proc.tx = 7.5 * scale_uparms
+l_uparm_twist4_proc.tx = 10.0 * scale_uparms
+l_lowarm.tx = 10.0 * scale_uparms
+l_lowarm_twist1_proc.tx = 2.0 * scale_lowarms
+l_lowarm_twist2_proc.tx = 4.0 * scale_lowarms
+l_lowarm_twist3_proc.tx = 6.0 * scale_lowarms
+l_lowarm_twist4_proc.tx = 8.0 * scale_lowarms
+l_wrist_twist.tx = 10.0 * scale_lowarms
+l_wrist.sc = 1.0 * scale_l_hands
+
+# right leg scale
+r_upleg.tx = -10.0 * scale_hip_width
+r_upleg.ty = 10.0 * scale_hip_height
+r_upleg.tz = 10.0 * scale_hip_depth
+#r_upleg_twist0_proc.tx = -0.0 * scale_uplegs
+r_upleg_twist1_proc.tx = -2.5 * scale_uplegs
+r_upleg_twist2_proc.tx = -5.0 * scale_uplegs
+r_upleg_twist3_proc.tx = -7.5 * scale_uplegs
+r_upleg_twist4_proc.tx = -10.0 * scale_uplegs
+r_lowleg.tx = -10.0 * scale_uplegs
+r_lowleg_twist1_proc.tx = -2.0 * scale_lowlegs
+r_lowleg_twist2_proc.tx = -4.0 * scale_lowlegs
+r_lowleg_twist3_proc.tx = -6.0 * scale_lowlegs
+r_lowleg_twist4_proc.tx = -8.0 * scale_lowlegs
+r_foot.tx = -10.0 * scale_lowlegs
+r_lowleg.ry = 1.0 * scale_knee_knock
+
+r_subtalar.tx = 10.0 * scale_ankle_height
+r_subtalar.ty = 1.0 * scale_ankle_height # ensure the ankle height is the world space y axis
+r_subtalar.tz = -1.17 * scale_ankle_height
+r_talocrural.tx = -9.31 * scale_foot_length # ensure the foot length extends in the direction of the toes, not the joints
+r_talocrural.ty = -1.61 * scale_foot_length
+r_talocrural.tz = -0.10 * scale_foot_length
+r_ball.tx = -10.0 * scale_foot_length # ensure the foot length extends in the direction of the toes, not the joints
+r_ball.ty = -1.74 * scale_foot_length
+r_ball.tz = 0.11 * scale_foot_length
+
+# left leg scale
+l_upleg.tx = 10.0 * scale_hip_width
+l_upleg.ty = 10.0 * scale_hip_height
+l_upleg.tz = 10.0 * scale_hip_depth
+#l_upleg_twist0_proc.tx = 0.0 * scale_uplegs
+l_upleg_twist1_proc.tx = 2.5 * scale_uplegs
+l_upleg_twist2_proc.tx = 5.0 * scale_uplegs
+l_upleg_twist3_proc.tx = 7.5 * scale_uplegs
+l_upleg_twist4_proc.tx = 10.0 * scale_uplegs
+l_lowleg.tx = 10.0 * scale_uplegs
+l_lowleg_twist1_proc.tx = 2.0 * scale_lowlegs
+l_lowleg_twist2_proc.tx = 4.0 * scale_lowlegs
+l_lowleg_twist3_proc.tx = 6.0 * scale_lowlegs
+l_lowleg_twist4_proc.tx = 8.0 * scale_lowlegs
+l_foot.tx = 10.0 * scale_lowlegs
+l_lowleg.ry = 1.0 * scale_knee_knock
+
+l_subtalar.tx = -10.0 * scale_ankle_height # ensure the ankle height is the world space y axis
+l_subtalar.ty = -1.0 * scale_ankle_height
+l_subtalar.tz = 1.17 * scale_ankle_height
+l_talocrural.tx = 9.31 * scale_foot_length # ensure the foot length extends in the direction of the toes, not the joints
+l_talocrural.ty = 1.61 * scale_foot_length
+l_talocrural.tz = 0.10 * scale_foot_length
+l_ball.tx = 10.0 * scale_foot_length # ensure the foot length extends in the direction of the toes, not the joints
+l_ball.ty = 1.74 * scale_foot_length
+l_ball.tz = -0.11 * scale_foot_length
+
+################## hand scale #####################
+#Right hand
+r_index1.tx = 1.0 * scale_r_index1_length
+r_middle1.tx = 1.0 * scale_r_middle1_length
+r_ring1.tx = 1.0 * scale_r_ring1_length
+r_pinky1.tx = 1.0 * scale_r_pinky1_length
+r_thumb1.tx = 1.0 * scale_r_thumb1_length
+
+r_index1.tz = 1.0 * scale_r_index1_offset
+r_middle1.tz = 1.0 * scale_r_middle1_offset
+r_ring1.tz = 1.0 * scale_r_ring1_offset
+r_pinky1.tz = 1.0 * scale_r_pinky1_offset
+r_thumb1.tz = 1.0 * scale_r_thumb1_offset
+
+r_index2.tx = 1.0 * scale_r_index2_length
+r_middle2.tx = 1.0 * scale_r_middle2_length
+r_ring2.tx = 1.0 * scale_r_ring2_length
+r_pinky2.tx = 1.0 * scale_r_pinky2_length
+r_thumb2.tx = 1.0 * scale_r_thumb2_length
+
+r_index3.tx = 1.0 * scale_r_index3_length
+r_middle3.tx = 1.0 * scale_r_middle3_length
+r_ring3.tx = 1.0 * scale_r_ring3_length
+r_pinky3.tx = 1.0 * scale_r_pinky3_length
+r_thumb3.tx = 1.0 * scale_r_thumb3_length
+
+r_index_null.tx = 1.0 * scale_r_index_null_tx
+r_middle_null.tx = 1.0 * scale_r_middle_null_tx
+r_ring_null.tx = 1.0 * scale_r_ring_null_tx
+r_pinky_null.tx = 1.0 * scale_r_pinky_null_tx
+r_thumb_null.tx = 1.0 * scale_r_thumb_null_tx
+
+#Left hand
+l_index1.tx = -1.0 * scale_l_index1_length
+l_middle1.tx = -1.0 * scale_l_middle1_length
+l_ring1.tx = -1.0 * scale_l_ring1_length
+l_pinky1.tx = -1.0 * scale_l_pinky1_length
+l_thumb1.tx = -1.0 * scale_l_thumb1_length
+
+l_index1.tz = -1.0 * scale_l_index1_offset
+l_middle1.tz = -1.0 * scale_l_middle1_offset
+l_ring1.tz = -1.0 * scale_l_ring1_offset
+l_pinky1.tz = -1.0 * scale_l_pinky1_offset
+l_thumb1.tz = -1.0 * scale_l_thumb1_offset
+
+l_index2.tx = -1.0 * scale_l_index2_length
+l_middle2.tx = -1.0 * scale_l_middle2_length
+l_ring2.tx = -1.0 * scale_l_ring2_length
+l_pinky2.tx = -1.0 * scale_l_pinky2_length
+l_thumb2.tx = -1.0 * scale_l_thumb2_length
+
+l_index3.tx = -1.0 * scale_l_index3_length
+l_middle3.tx = -1.0 * scale_l_middle3_length
+l_ring3.tx = -1.0 * scale_l_ring3_length
+l_pinky3.tx = -1.0 * scale_l_pinky3_length
+l_thumb3.tx = -1.0 * scale_l_thumb3_length
+
+l_index_null.tx = -1.0 * scale_l_index_null_tx
+l_middle_null.tx = -1.0 * scale_l_middle_null_tx
+l_ring_null.tx = -1.0 * scale_l_ring_null_tx
+l_pinky_null.tx = -1.0 * scale_l_pinky_null_tx
+l_thumb_null.tx = -1.0 * scale_l_thumb_null_tx
+
+########################################################################################
+[ParameterSets]
+parameterset translation 	root_tx root_ty root_tz
+parameterset rigid			root_tx root_ty root_tz root_rx root_ry root_rz
+parameterset scale 			scale_eye_width scale_eye_height scale_eye_depth scale_uparms scale_ankle_height scale_foot_length scale_lowarms scale_hip_width scale_lowlegs scale_neck_length scale_shoulder_width scale_spine_length scale_uplegs scale_knee_knock scale_r_hands scale_r_index1_length scale_r_middle1_length scale_r_ring1_length scale_r_pinky1_length scale_r_thumb1_length scale_r_index1_offset scale_r_middle1_offset scale_r_ring1_offset scale_r_pinky1_offset scale_r_thumb1_offset scale_r_index2_length scale_r_middle2_length scale_r_ring2_length scale_r_pinky2_length scale_r_thumb2_length scale_r_index3_length scale_r_middle3_length scale_r_ring3_length scale_r_pinky3_length scale_r_thumb3_length scale_r_index_null_tx scale_r_middle_null_tx scale_r_ring_null_tx scale_r_pinky_null_tx scale_r_thumb_null_tx scale_l_hands scale_l_index1_length scale_l_middle1_length scale_l_ring1_length scale_l_pinky1_length scale_l_thumb1_length scale_l_index1_offset scale_l_middle1_offset scale_l_ring1_offset scale_l_pinky1_offset scale_l_thumb1_offset scale_l_index2_length scale_l_middle2_length scale_l_ring2_length scale_l_pinky2_length scale_l_thumb2_length scale_l_index3_length scale_l_middle3_length scale_l_ring3_length scale_l_pinky3_length scale_l_thumb3_length scale_l_index_null_tx scale_l_middle_null_tx scale_l_ring_null_tx scale_l_pinky_null_tx scale_l_thumb_null_tx scale_hip_height scale_hip_depth
+parameterset handPose       r_lowarm_twist r_wrist_ry r_wrist_rz r_index1_ry r_ring1_ry r_pinky1_ry r_middle1_ry r_index1_rz r_index1_rx r_index2_rz r_index3_rz r_middle1_rz r_middle1_rx r_middle2_rz r_middle3_rz r_ring1_rz r_ring1_rx r_ring2_rz r_ring3_rz r_pinky1_rz r_pinky1_rx r_pinky2_rz r_pinky3_rz r_thumb1_rx r_thumb1_ry r_thumb1_rz r_thumb2_rz r_thumb3_rz r_thumb0_ry r_thumb0_rz l_lowarm_twist l_wrist_ry l_wrist_rz l_index1_ry l_ring1_ry l_pinky1_ry l_middle1_ry l_index1_rz l_index1_rx l_index2_rz l_index3_rz l_middle1_rz l_middle1_rx l_middle2_rz l_middle3_rz l_ring1_rz l_ring1_rx l_ring2_rz l_ring3_rz l_pinky1_rz l_pinky1_rx l_pinky2_rz l_pinky3_rz l_thumb1_rx l_thumb1_ry l_thumb1_rz l_thumb2_rz l_thumb3_rz l_thumb0_ry l_thumb0_rz
+parameterset handScale      scale_r_hands scale_r_index1_length scale_r_middle1_length scale_r_ring1_length scale_r_pinky1_length scale_r_thumb1_length scale_r_index1_offset scale_r_middle1_offset scale_r_ring1_offset scale_r_pinky1_offset scale_r_thumb1_offset scale_r_index2_length scale_r_middle2_length scale_r_ring2_length scale_r_pinky2_length scale_r_thumb2_length scale_r_index3_length scale_r_middle3_length scale_r_ring3_length scale_r_pinky3_length scale_r_thumb3_length scale_r_index_null_tx scale_r_middle_null_tx scale_r_ring_null_tx scale_r_pinky_null_tx scale_r_thumb_null_tx scale_l_hands scale_l_index1_length scale_l_middle1_length scale_l_ring1_length scale_l_pinky1_length scale_l_thumb1_length scale_l_index1_offset scale_l_middle1_offset scale_l_ring1_offset scale_l_pinky1_offset scale_l_thumb1_offset scale_l_index2_length scale_l_middle2_length scale_l_ring2_length scale_l_pinky2_length scale_l_thumb2_length scale_l_index3_length scale_l_middle3_length scale_l_ring3_length scale_l_pinky3_length scale_l_thumb3_length scale_l_index_null_tx scale_l_middle_null_tx scale_l_ring_null_tx scale_l_pinky_null_tx scale_l_thumb_null_tx
+parameterset fingers        r_index1_ry r_ring1_ry r_pinky1_ry r_middle1_ry r_index1_rz r_index1_rx r_index2_rz r_index3_rz r_middle1_rz r_middle1_rx r_middle2_rz r_middle3_rz r_ring1_rz r_ring1_rx r_ring2_rz r_ring3_rz r_pinky1_rz r_pinky1_rx r_pinky2_rz r_pinky3_rz r_thumb1_rx r_thumb1_ry r_thumb1_rz r_thumb2_rz r_thumb3_rz r_thumb0_ry r_thumb0_rz l_index1_ry l_ring1_ry l_pinky1_ry l_middle1_ry l_index1_rz l_index1_rx l_index2_rz l_index3_rz l_middle1_rz l_middle1_rx l_middle2_rz l_middle3_rz l_ring1_rz l_ring1_rx l_ring2_rz l_ring3_rz l_pinky1_rz l_pinky1_rx l_pinky2_rz l_pinky3_rz l_thumb1_rx l_thumb1_ry l_thumb1_rz l_thumb2_rz l_thumb3_rz l_thumb0_ry l_thumb0_rz
+########################################################################################
+parameterset flexibleDofs   l_ball_rx_flexible l_foot_ry_flexible l_subtalar_rz_flexible l_talocrural_rx_flexible r_ball_rx_flexible r_foot_ry_flexible  r_subtalar_rz_flexible r_talocrural_rx_flexible spine0_rx_flexible spine0_ry_flexible spine0_rz_flexible spine1_rx_flexible spine1_ry_flexible spine1_rz_flexible spine2_rx_flexible spine2_ry_flexible spine2_rz_flexible spine3_rx_flexible spine3_ry_flexible spine3_rz_flexible
+parameterset flexiblePose   spine_length_flexible neck_length_flexible shoulder_width_flexible arm_length_flexible hip_width_flexible leg_length_flexible
+
+#######################################################
+[Limits]
+limit spine_twist0 minmax [-0.9, 0.9]
+limit spine_lean0 minmax [-0.7, 0.7]
+limit spine_bend0 minmax [-0.5, 1.5]
+limit spine_twist1 minmax [-0.9, 0.9]
+limit spine_lean1 minmax [-0.7, 0.7]
+limit spine_bend1 minmax [-0.5, 1.5]
+limit neck_twist minmax [-0.8, 0.8]
+limit neck_lean minmax [-0.5, 0.5]
+limit neck_bend minmax [-0.6, 0.5]
+limit head_twist minmax [-0.8, 0.8]
+limit head_lean minmax [-0.3, 0.3]
+limit head_bend minmax [-0.4, 0.4]
+limit r_clavicle_rx minmax [-0.0, 0.0] 0.1
+limit l_clavicle_rx minmax [-0.0, 0.0] 0.1
+limit r_clavicle_ry minmax [-0.0, 0.5] 0.1
+limit l_clavicle_ry minmax [-0.0, 0.5] 0.1
+limit r_clavicle_rz minmax [-0.3, 0.3] 0.1
+limit l_clavicle_rz minmax [-0.3, 0.3] 0.1
+limit r_uparm_ry minmax [-1.0, 1.2]
+limit l_uparm_ry minmax [-1.0, 1.2]
+limit r_uparm_rz minmax [-1.2, 2.0]
+limit l_uparm_rz minmax [-1.2, 2.0]
+limit r_uparm_twist minmax [-1.5, 1.8]
+limit l_uparm_twist minmax [-1.5, 1.8]
+limit r_elbow_bend minmax [-0.5, 2.0]
+limit l_elbow_bend minmax [-0.5, 2.0]
+limit r_lowarm_twist minmax [-2.2, 1.0]
+limit l_lowarm_twist minmax [-2.2, 1.0]
+limit r_wrist_ry minmax [-1.2, 1.5]
+limit l_wrist_ry minmax [-1.2, 1.5]
+limit r_wrist_rz minmax [-2.2, 1.5]
+limit l_wrist_rz minmax [-2.2, 1.5]
+limit r_upleg_twist minmax [-1.5, 0.8]
+limit l_upleg_twist minmax [-1.5, 0.8]
+limit r_upleg_ry minmax [-1.6, 0.6]
+limit l_upleg_ry minmax [-1.6, 0.6]
+limit r_upleg_rz minmax [-2.5, 1.0]
+limit l_upleg_rz minmax [-2.5, 1.0]
+limit r_knee_bend minmax [0.0, 2.8]
+limit l_knee_bend minmax [0.0, 2.8]
+limit r_lowleg_twist minmax [-1.0, 1.2]
+limit l_lowleg_twist minmax [-1.0, 1.2]
+limit r_foot_bend minmax [-1.0, 1.0]
+limit l_foot_bend minmax [-1.0, 1.0]
+limit r_foot_lean0 minmax [-1.0, 0.6] 0.1
+limit l_foot_lean0 minmax [-1.0, 0.6] 0.1
+# Transeversetarsal and ball capture deformation of tip of the feet. Disable if assuming a rigid feet (e.g. shoes).
+limit r_foot_lean1 minmax [0.0, 0.0] 0.1
+limit l_foot_lean1 minmax [0.0, 0.0] 0.1
+limit r_ball_bend minmax [-0.7, 0.3] 0.1
+limit l_ball_bend minmax [-0.7, 0.3] 0.1
+
+#Hands joint limits
+#Right hand
+limit r_index1_ry minmax [-0.8, 0.8]
+limit r_middle1_ry minmax [-0.8, 0.8]
+limit r_ring1_ry minmax [-0.8, 0.8]
+limit r_pinky1_ry minmax [-0.8, 0.8]
+
+limit r_index1_rx minmax [-0.5, 0.5]
+limit r_middle1_rx minmax [-0.3, 0.3]
+limit r_ring1_rx minmax [-0.3, 0.3]
+limit r_pinky1_rx minmax [-0.3, 0.3]
+
+limit r_index1_rz minmax [-0.78, 1.57]
+limit r_index2_rz minmax [-0.2, 1.57]
+limit r_index3_rz minmax [-0.1, 1.57]
+limit r_middle1_rz minmax [-0.78, 1.57]
+limit r_middle2_rz minmax [-0.2, 1.57]
+limit r_middle3_rz minmax [-0.1, 1.57]
+limit r_ring1_rz minmax [-0.78, 1.57]
+limit r_ring2_rz minmax [-0.2, 1.57]
+limit r_ring3_rz minmax [-0.1, 1.57]
+limit r_pinky1_rz minmax [-1, 1.57]
+limit r_pinky2_rz minmax [-0.2, 1.57]
+limit r_pinky3_rz minmax [-0.1, 1.57]
+limit r_thumb1_ry minmax [-0.5, 0.5]
+limit r_thumb1_rx minmax [-0.5, 0.5]
+
+limit r_thumb1_rz minmax [-0.2, 1.0]
+limit r_thumb2_rz minmax [-0.3, 1.57]
+limit r_thumb3_rz minmax [-0.3, 1.57]
+
+limit r_thumb0_ry minmax [-1.0, 1.0]
+limit r_thumb0_rz minmax [-1.0, 1.0]
+
+#Left hand
+limit l_index1_ry minmax [-0.8, 0.8]
+limit l_middle1_ry minmax [-0.8, 0.8]
+limit l_ring1_ry minmax [-0.8, 0.8]
+limit l_pinky1_ry minmax [-0.8, 0.8]
+
+limit l_index1_rx minmax [-0.5, 0.5]
+limit l_middle1_rx minmax [-0.3, 0.3]
+limit l_ring1_rx minmax [-0.3, 0.3]
+limit l_pinky1_rx minmax [-0.3, 0.3]
+
+limit l_index1_rz minmax [-0.78, 1.57]
+limit l_index2_rz minmax [-0.2, 1.57]
+limit l_index3_rz minmax [-0.1, 1.57]
+limit l_middle1_rz minmax [-0.78, 1.57]
+limit l_middle2_rz minmax [-0.2, 1.57]
+limit l_middle3_rz minmax [-0.1, 1.57]
+limit l_ring1_rz minmax [-0.78, 1.57]
+limit l_ring2_rz minmax [-0.2, 1.57]
+limit l_ring3_rz minmax [-0.1, 1.57]
+limit l_pinky1_rz minmax [-1, 1.57]
+limit l_pinky2_rz minmax [-0.2, 1.57]
+limit l_pinky3_rz minmax [-0.1, 1.57]
+limit l_thumb1_ry minmax [-0.5, 0.5]
+limit l_thumb1_rx minmax [-0.5, 0.5]
+
+limit l_thumb1_rz minmax [-0.2, 1.0]
+limit l_thumb2_rz minmax [-0.3, 1.57]
+limit l_thumb3_rz minmax [-0.3, 1.57]
+
+limit l_thumb0_ry minmax [-1.0, 1.0]
+limit l_thumb0_rz minmax [-1.0, 1.0]
+
+# scaling limits
+# body scaling limits
+limit scale_eye_depth minmax [0.0, 0.0] 0.1
+limit scale_eye_height minmax [0.0, 0.0] 0.1
+limit scale_eye_width minmax [0.0, 0.0] 0.1
+limit scale_spine_length minmax [-1.1, 1.1]
+limit scale_neck_length minmax [-0.4, 0.4] 0.1
+limit scale_shoulder_width minmax [-0.2, 0.2]
+limit scale_uparms minmax [-1.0, 1.0]
+limit scale_lowarms minmax [-1.0, 1.0]
+limit scale_hip_width minmax [-0.5, 0.5]
+limit scale_hip_depth minmax [0.0, 0.0] 0.1
+limit scale_hip_height minmax [0.0, 0.0] 0.1
+limit scale_uplegs minmax [-0.5, 0.5]
+limit scale_lowlegs minmax [-1.0, 1.0]
+limit scale_ankle_height minmax [-0.0, 0.0] 10.0
+limit scale_foot_length minmax [-0.1, 0.1]
+limit scale_r_hands minmax [-0.2, 0.2]
+limit scale_l_hands minmax [-0.2, 0.2]
+limit scale_knee_knock minmax [0.0, 0.0] 0.1
+
+#Right hand
+limit scale_r_index1_length minmax [-0.5, 0.5]
+limit scale_r_middle1_length minmax [-0.5, 0.5]
+limit scale_r_ring1_length minmax [-0.5, 0.5]
+limit scale_r_pinky1_length minmax [-0.5, 0.5]
+limit scale_r_thumb1_length minmax [-0.5, 0.5]
+
+limit scale_r_index1_offset minmax [-0.5, 0.5]
+limit scale_r_middle1_offset minmax [-0.5, 0.5]
+limit scale_r_ring1_offset minmax [-0.5, 0.5]
+limit scale_r_pinky1_offset minmax [-0.5, 0.5]
+limit scale_r_thumb1_offset minmax [-0.5, 0.5]
+
+limit scale_r_index2_length minmax [-0.25, 0.25]
+limit scale_r_middle2_length minmax [-0.25, 0.25]
+limit scale_r_ring2_length minmax [-0.25, 0.25]
+limit scale_r_pinky2_length minmax [-0.25, 0.25]
+limit scale_r_thumb2_length minmax [-0.25, 0.25]
+
+limit scale_r_index3_length minmax [-0.25, 0.25]
+limit scale_r_middle3_length minmax [-0.25, 0.25]
+limit scale_r_ring3_length minmax [-0.25, 0.25]
+limit scale_r_pinky3_length minmax [-0.25, 0.25]
+limit scale_r_thumb3_length minmax [-0.25, 0.25]
+
+limit scale_r_index_null_tx minmax [-0.25, 0.25]
+limit scale_r_middle_null_tx minmax [-0.25, 0.25]
+limit scale_r_ring_null_tx minmax [-0.25, 0.25]
+limit scale_r_pinky_null_tx minmax [-0.25, 0.25]
+limit scale_r_thumb_null_tx minmax [-0.25, 0.25]
+
+#Left hand
+limit scale_l_index1_length minmax [-0.5, 0.5]
+limit scale_l_middle1_length minmax [-0.5, 0.5]
+limit scale_l_ring1_length minmax [-0.5, 0.5]
+limit scale_l_pinky1_length minmax [-0.5, 0.5]
+limit scale_l_thumb1_length minmax [-0.5, 0.5]
+
+limit scale_l_index1_offset minmax [-0.5, 0.5]
+limit scale_l_middle1_offset minmax [-0.5, 0.5]
+limit scale_l_ring1_offset minmax [-0.5, 0.5]
+limit scale_l_pinky1_offset minmax [-0.5, 0.5]
+limit scale_l_thumb1_offset minmax [-0.5, 0.5]
+
+limit scale_l_index2_length minmax [-0.25, 0.25]
+limit scale_l_middle2_length minmax [-0.25, 0.25]
+limit scale_l_ring2_length minmax [-0.25, 0.25]
+limit scale_l_pinky2_length minmax [-0.25, 0.25]
+limit scale_l_thumb2_length minmax [-0.25, 0.25]
+
+limit scale_l_index3_length minmax [-0.25, 0.25]
+limit scale_l_middle3_length minmax [-0.25, 0.25]
+limit scale_l_ring3_length minmax [-0.25, 0.25]
+limit scale_l_pinky3_length minmax [-0.25, 0.25]
+limit scale_l_thumb3_length minmax [-0.25, 0.25]
+
+limit scale_l_index_null_tx minmax [-0.25, 0.25]
+limit scale_l_middle_null_tx minmax [-0.25, 0.25]
+limit scale_l_ring_null_tx minmax [-0.25, 0.25]
+limit scale_l_pinky_null_tx minmax [-0.25, 0.25]
+limit scale_l_thumb_null_tx minmax [-0.25, 0.25]
+
+# flexible length limits
+limit spine_length_flexible minmax [0.0, 0.0]
+limit neck_length_flexible minmax [0.0, 0.0]
+limit arm_length_flexible minmax [0.0, 0.0]
+limit leg_length_flexible minmax [0.0, 0.0]
+limit shoulder_width_flexible minmax [0.0, 0.0]
+limit hip_width_flexible minmax [0.0, 0.0]
+
+############## ADDITIONAL FLEXIBLE DOFS ###############
+limit l_ball_rx_flexible minmax [0.0, 0.0] 0.1
+limit l_foot_ry_flexible minmax [0.0, 0.0] 0.1
+limit l_subtalar_rz_flexible minmax [0.0, 0.0] 0.1
+limit l_talocrural_rx_flexible minmax [0.0, 0.0] 0.1
+limit r_ball_rx_flexible minmax [0.0, 0.0] 0.1
+limit r_foot_ry_flexible minmax [0.0, 0.0] 0.1
+limit r_subtalar_rz_flexible minmax [0.0, 0.0] 0.1
+limit r_talocrural_rx_flexible minmax [0.0, 0.0] 0.1
+limit spine0_rx_flexible minmax [0.0, 0.0]
+limit spine0_ry_flexible minmax [0.0, 0.0]
+limit spine0_rz_flexible minmax [0.0, 0.0]
+limit spine1_rx_flexible minmax [0.0, 0.0]
+limit spine1_ry_flexible minmax [0.0, 0.0]
+limit spine1_rz_flexible minmax [0.0, 0.0]
+limit spine2_rx_flexible minmax [0.0, 0.0]
+limit spine2_ry_flexible minmax [0.0, 0.0]
+limit spine2_rz_flexible minmax [0.0, 0.0]
+limit spine3_rx_flexible minmax [0.0, 0.0]
+limit spine3_ry_flexible minmax [0.0, 0.0]
+limit spine3_rz_flexible minmax [0.0, 0.0]
+#######################################################
+
+[PoseConstraints]
+poseconstraints tpose		spine_bend0=0.0 spine_bend1=0.0 spine_twist0=0.0 spine_twist1=0.0 spine_lean0=0.0 spine_lean1=0.0 neck_bend=0.0 neck_twist=0.0 neck_lean=0.0 l_elbow_bend=-0.5 r_elbow_bend=-0.5 l_knee_bend=0.0 r_knee_bend=0.0 l_foot_lean0=0.0 r_foot_lean0=0.0 l_foot_lean1=0.0 r_foot_lean1=0.0 l_ball_bend=0.0 r_ball_bend=0.0

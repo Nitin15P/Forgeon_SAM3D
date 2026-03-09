@@ -1,0 +1,10 @@
+# For mesh_to_amass.py: MHR mesh_data -> AMASS-style SMPL
+# Install: pip install -r scripts/requirements-mesh-to-amass.txt
+
+torch>=1.9.0
+smplx>=0.1.28
+scipy>=1.7.0
+numpy>=1.19.0
+
+# Optional: faster batch fitting (pip install smplfitter)
+# smplfitter>=0.3.0
