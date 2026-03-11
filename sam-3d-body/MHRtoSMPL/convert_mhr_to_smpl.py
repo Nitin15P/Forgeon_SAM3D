@@ -17,7 +17,22 @@ MHR_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(MHR_ROOT))
 sys.path.insert(0, str(MHR_ROOT / "tools" / "mhr_smpl_conversion"))
 
-# IMPORTANT: Import pymomentum BEFORE torch to avoid segfault
+# Stub out pymomentum_fitting BEFORE any other imports to avoid
+# pymomentum.solver + sklearn BLAS conflict (MHR->SMPL uses PyTorch only)
+import types as _types, sys as _sys
+_pmf = _types.ModuleType('pymomentum_fitting')
+_pmf._NUM_RIG_PARAMETERS = 204
+_pmf._NUM_BODY_BLENDSHAPES = 20
+_pmf._NUM_HEAD_BLENDSHAPES = 20
+_pmf._NUM_HAND_BLENDSHAPES = 5
+class _DummyPMF:
+    def __init__(self, *a, **kw):
+        raise RuntimeError("PyMomentumModelFitting not available - use method='pytorch'")
+_pmf.PyMomentumModelFitting = _DummyPMF
+_sys.modules['pymomentum_fitting'] = _pmf
+del _types, _pmf, _DummyPMF, _sys
+
+# IMPORTANT: Import pymomentum BEFORE torch to ensure correct CUDA/library init
 import pymomentum.geometry
 import pymomentum.torch
 
@@ -168,6 +183,17 @@ def main():
     # Load MHR vertices (and camera translations, if present)
     print("Loading MHR vertices...")
     mhr_vertices, cam_t_list = load_mhr_vertices(mhr_params_dir)
+
+    # SAM3D outputs pred_vertices in METERS (local/centered), pred_cam_t also in METERS.
+    # The MHR<->SMPL conversion library expects MHR vertices in CENTIMETERS (world space).
+    # So we must: vertices_cm = (pred_vertices + pred_cam_t) * 100
+    print("Converting vertices from meters to centimeters (SAM3D → MHR space)...")
+    for i in range(len(mhr_vertices)):
+        cam_t = cam_t_list[i]
+        if cam_t is not None:
+            mhr_vertices[i] = (mhr_vertices[i] + cam_t.astype(np.float32)) * 100.0
+        else:
+            mhr_vertices[i] = mhr_vertices[i] * 100.0
 
     # Convert to tensor
     mhr_vertices_tensor = torch.from_numpy(mhr_vertices).float()

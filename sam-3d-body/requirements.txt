@@ -58,7 +58,7 @@ smplx==0.1.28
 tqdm==4.67.3
 scikit-learn==1.8.0
 # pymomentum-cpu: optional; requires glibc 2.28+. Use conda or requirements-pymomentum.txt on supported systems.
-pymomentum-cpu==0.1.108.post0
+#pymomentum-cpu==0.1.108.post0
 
 # SAM 3D Body → IK in single venv (AddBiomechanics kinematics pass)
 nimblephysics==0.10.52.1

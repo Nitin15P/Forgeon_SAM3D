@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Pipeline outputs (large data)
+output/
+pipeline_output/
+uploads/
+
+# Model weights (tracked via LFS or separate)
+*.ckpt
+*.pt
+*.pth
+
+# Assets with large files
+assets/
+
+# Misc
+.DS_Store

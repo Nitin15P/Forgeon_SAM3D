@@ -105,7 +105,7 @@ class MHR(torch.nn.Module):
     ) -> "MHR":
         """Create MHR model from the given character and asset paths."""
 
-        blendshapes_data = np.load(blendshapes_path)
+        blendshapes_data = np.load(blendshapes_path, allow_pickle=True)
 
         # Pose correctives model
         pose_correctives_model = None
@@ -114,7 +114,7 @@ class MHR(torch.nn.Module):
             and corrective_activation_path is not None
         )
         if has_pose_correctives:
-            corrective_activation_data = np.load(corrective_activation_path)
+            corrective_activation_data = np.load(corrective_activation_path, allow_pickle=True)
             pose_correctives_model = MHRPoseCorrectivesModel(
                 load_pose_dirs_predictor(
                     blendshapes_data,

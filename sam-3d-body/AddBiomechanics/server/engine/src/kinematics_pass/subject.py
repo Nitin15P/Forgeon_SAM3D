@@ -279,7 +279,10 @@ class Subject(metaclass=ExceptionHandlingMeta):
 
         self.skeleton = self.customOsim.skeleton
         self.genericMassKg = self.skeleton.getMass()
-        self.genericHeightM = self.skeleton.getHeight(self.skeleton.getPositions())
+        if self.skeletonPreset in ('vicon', 'cmu', 'opencap-full', 'complete'):
+            self.genericHeightM = self.skeleton.getHeight(self.skeleton.getPositions())
+        else:
+            self.genericHeightM = -1.0  # skip getHeight for custom models (may segfault)
         self.markerSet = self.customOsim.markersMap
 
         # 3.3. Output both SDF and MJCF versions of the skeleton.
