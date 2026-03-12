@@ -294,15 +294,28 @@ def _find_ik_mot_files(engine_input: str) -> list:
 
 
 def _find_osim(engine_input: str) -> Optional[str]:
-    models_dir = Path(engine_input) / "osim_results" / "Models"
-    if not models_dir.exists():
-        return None
-    for name in ["match_markers_but_ignore_physics.osim", "optimized_scale_and_markers.osim"]:
-        p = models_dir / name
-        if p.exists():
-            return str(p)
-    candidates = list(models_dir.glob("*.osim"))
-    return str(candidates[0]) if candidates else None
+    base = Path(engine_input)
+    # Priority order: scaled model > unscaled-but-optimized > raw unscaled
+    search_dirs = [
+        base / "osim_results" / "Models",
+        base,
+    ]
+    preferred = [
+        "match_markers_but_ignore_physics.osim",
+        "optimized_scale_and_markers.osim",
+        "unscaled_generic.osim",
+        "unscaled_generic_raw.osim",
+    ]
+    for name in preferred:
+        for d in search_dirs:
+            p = d / name
+            if p.exists():
+                return str(p)
+    for d in search_dirs:
+        candidates = list(d.glob("*.osim"))
+        if candidates:
+            return str(candidates[0])
+    return None
 
 
 def _run_biomechanics_pipeline(
@@ -355,6 +368,7 @@ def _run_biomechanics_pipeline(
             "AB_SKIP_SCALETOOL": "1",
             "PYTHONUNBUFFERED": "1",
             "DISPLAY": ":99",
+            "SAM3D_MHR_PATH": MHR_PATH,
         })
         pipeline_cmd = [
             "xvfb-run", "-a", "-s", "-screen 0 1920x1080x24",
