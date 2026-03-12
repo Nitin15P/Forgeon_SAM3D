@@ -6,7 +6,9 @@ mediapipe==0.10.13
 opencv-contrib-python==4.13.0.90
 rtmlib==0.0.14
 onnxruntime==1.23.2
-numpy==2.4.1
+# Pinned to 1.26.4 — nimblephysics 0.10.52.1 compiled against numpy 1.x ABI.
+# Do NOT upgrade to numpy 2.x or nimblephysics will crash at import.
+numpy==1.26.4
 pandas==2.3.3
 scipy==1.17.0
 pillow==12.1.0
@@ -40,9 +42,18 @@ langchain-google-genai>=2.0.0
 langchain-core>=0.3.0
 tiktoken>=0.5.0
 
-# SAM 3D Body (install torch/torchvision separately from pytorch.org if using CUDA)
-torch>=2.0.0
-torchvision>=0.15.0
+# SAM 3D Body — torch/torchvision must be installed from the PyTorch CUDA index.
+# Versions are pinned: torchvision 0.23.0 matches torch 2.8.0; pymomentum-cpu
+# requires torch>=2.8.0,<2.9. Install with:
+#   pip install torch==2.8.0+cu128 torchvision==0.23.0+cu128 \
+#       --index-url https://download.pytorch.org/whl/cu128
+# After installing, patch pymomentum rpath so it finds libtorch without LD_LIBRARY_PATH:
+#   TORCH_LIB=$(python -c "import torch,os; print(os.path.join(os.path.dirname(torch.__file__),'lib'))")
+#   PYMOM_LIBS=$(python -c "import site; print(site.getsitepackages()[0])")/pymomentum_cpu.libs
+#   for so in $(python -c "import site; print(site.getsitepackages()[0])")/pymomentum/*.so; do
+#       patchelf --set-rpath "$TORCH_LIB:$PYMOM_LIBS" "$so"; done
+torch==2.8.0
+torchvision==0.23.0
 pytorch-lightning==2.6.1
 omegaconf==2.3.0
 yacs==0.1.8
