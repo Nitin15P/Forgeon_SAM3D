@@ -189,61 +189,28 @@ def main() -> int:
         print(f"Error: mesh_data not found: {mesh_data_dir}", file=sys.stderr)
         return 1
 
-    # ---- 2. mesh_data → MHR-SMPL (subprocess with LD_LIBRARY_PATH so pymomentum finds libtorch.so) ----
-    mhr_conv_dir = os.path.join(repo, "MHRtoSMPL", "tools", "mhr_smpl_conversion")
+    # ---- 2+3. mesh_data → SMPL sequence (uses convert_mhr_to_smpl.py which stubs
+    #           pymomentum_fitting before import, avoiding the solver/BLAS crash) ----
     mhr_root = os.path.join(repo, "MHRtoSMPL")
     env_mhr = os.environ.copy()
     env_mhr["PYTHONPATH"] = mhr_root + (os.pathsep + env_mhr.get("PYTHONPATH", ""))
-    # pymomentum-cpu loads libtorch.so; ensure the loader can find it
-    try:
-        r = subprocess.run(
-            [sys.executable, "-c", "import torch, os; print(os.path.join(os.path.dirname(torch.__file__), 'lib'))"],
-            capture_output=True,
-            text=True,
-            cwd=repo,
-            env=env_mhr,
-            timeout=10,
-        )
-        if r.returncode == 0 and r.stdout.strip():
-            torch_lib = r.stdout.strip()
-            if os.path.isdir(torch_lib):
-                env_mhr["LD_LIBRARY_PATH"] = torch_lib + (os.pathsep + env_mhr.get("LD_LIBRARY_PATH", ""))
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        pass
-    sam3d_cmd = [
-        sys.executable,
-        "sam3d_dir_to_smpl.py",
-        "--sam3d-dir", mesh_data_dir,
-        "--smpl-model", smpl_model_path,
-        "--gender", args.gender,
-        "--out-dir", mhr_smpl_dir,
-        "--person-idx", str(args.person_idx),
-        "--device", "cpu",
-    ]
-    print("[2/6] Running MHR→SMPL (mesh_data → smpl_fit_results.npz)...")
-    _run(sam3d_cmd, cwd=mhr_conv_dir, env=env_mhr)
-    smpl_fit_npz = os.path.join(mhr_smpl_dir, "smpl_fit_results.npz")
-    if not os.path.isfile(smpl_fit_npz):
-        print(f"Error: {smpl_fit_npz} not found", file=sys.stderr)
-        return 1
-    if args.stop_after == "mhr_smpl":
-        print(f"Stopping after MHR-SMPL. Output: {smpl_fit_npz}")
-        return 0
-
-    # ---- 3. smpl_fit_results.npz → sequence .npz ----
     os.makedirs(smpl_seq_folder, exist_ok=True)
-    seq_cmd = [
+    mhr_smpl_cmd = [
         sys.executable,
-        "smpl_fit_to_sequence.py",
-        "--input", smpl_fit_npz,
-        "--output", seq_npz,
+        os.path.join(mhr_root, "convert_mhr_to_smpl.py"),
+        "--input", mesh_data_dir,
+        "--output", smpl_seq_folder,
+        "--sequence", "subject_smpl_sequence.npz",
         "--fps", str(args.fps),
         "--gender", args.gender,
     ]
-    print("[3/6] Converting to SMPL sequence (smpl2ab format)...")
-    _run(seq_cmd, cwd=mhr_conv_dir, env=env_mhr)
-    if args.stop_after == "sequence":
-        print(f"Stopping after sequence. Sequence: {seq_npz}")
+    print("[2/6] Running MHR→SMPL sequence (mesh_data → subject_smpl_sequence.npz)...")
+    _run(mhr_smpl_cmd, cwd=repo, env=env_mhr)
+    if not os.path.isfile(seq_npz):
+        print(f"Error: {seq_npz} not found", file=sys.stderr)
+        return 1
+    if args.stop_after in ("mhr_smpl", "sequence"):
+        print(f"Stopping after MHR-SMPL/sequence. Sequence: {seq_npz}")
         return 0
 
     # ---- 4. SMPL sequence → AddBiomechanics input (TRC + _subject.json) ----
@@ -256,7 +223,9 @@ def main() -> int:
     ]
     subject_folder = os.path.join(addbio_out, os.path.basename(smpl_seq_folder))
     print("[4/6] Running smpl2addbio (SMPL sequence → TRC markers)...")
-    _run(smpl2ab_cmd, cwd=repo)
+    env_smpl2ab = os.environ.copy()
+    env_smpl2ab["PYTHONPATH"] = repo + (os.pathsep + env_smpl2ab.get("PYTHONPATH", ""))
+    _run(smpl2ab_cmd, cwd=repo, env=env_smpl2ab)
     if not os.path.isdir(subject_folder):
         print(f"Error: smpl2addbio output not found: {subject_folder}", file=sys.stderr)
         return 1
